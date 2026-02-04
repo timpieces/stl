@@ -22,3 +22,7 @@ Generally when adding a new container/algo I'll:
 
 - Extend the libc++ test harness to cover compile-only (`*.compile.pass.cpp`), verification, and `assert.*` tests once we have the necessary death-test and diagnostic infrastructure in place.
 - Add a license. Ensure it's compatible with llvm because we are copy/pasting their tests
+
+## Add
+
+- Custom exception walking/handling code could be good
