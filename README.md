@@ -10,6 +10,9 @@ AI Disclaimer:
 - Some/much of the tests
 - *None* of the STL implementation
 
+This project is released under the MIT License (see `LICENSE`).
+Upstream tests (`tests/libcxx/...`) are copied directly from the LLVM libc++ project; they retain their original copyright and licensing (Apache 2.0 with LLVM exceptions), and no ownership is claimed here.
+
 # Development
 
 Generally when adding a new container/algo I'll:
@@ -21,7 +24,6 @@ Generally when adding a new container/algo I'll:
 ## TODO
 
 - Extend the libc++ test harness to cover compile-only (`*.compile.pass.cpp`), verification, and `assert.*` tests once we have the necessary death-test and diagnostic infrastructure in place.
-- Add a license. Ensure it's compatible with llvm because we are copy/pasting their tests
 
 ## Add
 
