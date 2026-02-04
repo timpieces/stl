@@ -1,0 +1,5 @@
+BasedOnStyle: Google
+DerivePointerAlignment: false
+IndentWidth: 4
+IndentAccessModifiers: false
+AccessModifierOffset: -4

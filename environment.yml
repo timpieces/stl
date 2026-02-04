@@ -1,0 +1,8 @@
+name: stl
+channels:
+  - conda-forge
+dependencies:
+  - clang_osx-arm64=21.1.8
+  - clangxx_osx-arm64=21.1.8
+  - libcxx=21.1.8
+  - lld=21.1.8

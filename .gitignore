@@ -1,0 +1,7 @@
+build/
+_compile/
+compile_commands.json
+third_party/llvm-project/
+.env
+.venv
+.DS_Store
