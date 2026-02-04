@@ -9,3 +9,7 @@ AI Disclaimer:
 - Some/much of the build infrastructure
 - Some/much of the tests
 - *None* of the STL implementation
+
+## TODO
+
+- Extend the libc++ test harness to cover compile-only (`*.compile.pass.cpp`), verification, and `assert.*` tests once we have the necessary death-test and diagnostic infrastructure in place.

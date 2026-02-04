@@ -29,3 +29,28 @@ target_compile_features(stl_hello PUBLIC cxx_std_23)
 add_executable(stl_hello_tests tests/hello_tests.cpp)
 target_link_libraries(stl_hello_tests PRIVATE stl_hello)
 add_test(NAME stl_hello_returns_hello_world COMMAND stl_hello_tests)
+
+set(LIBCXX_ARRAY_TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tests/libcxx/array")
+if(EXISTS "${LIBCXX_ARRAY_TEST_DIR}")
+    file(GLOB_RECURSE LIBCXX_ARRAY_TEST_SOURCES CONFIGURE_DEPENDS "${LIBCXX_ARRAY_TEST_DIR}/*.pass.cpp")
+    foreach(libcxx_test IN LISTS LIBCXX_ARRAY_TEST_SOURCES)
+        # TODO: teach the harness to run compile-only/diagnostic and assert/death tests.
+        if(libcxx_test MATCHES "\\.(compile|verify)\\.pass\\.cpp$")
+            continue()
+        endif()
+        if(libcxx_test MATCHES "assert\\.")
+            continue()
+        endif()
+        file(RELATIVE_PATH libcxx_test_rel "${LIBCXX_ARRAY_TEST_DIR}" "${libcxx_test}")
+        string(REGEX REPLACE "[^A-Za-z0-9]" "_" libcxx_test_target "${libcxx_test_rel}")
+        set(libcxx_test_target "libcxx_array_${libcxx_test_target}")
+        add_executable("${libcxx_test_target}" "${libcxx_test}")
+        target_include_directories(
+            "${libcxx_test_target}"
+            PRIVATE
+                "${CMAKE_CURRENT_SOURCE_DIR}/include"
+                "${CMAKE_CURRENT_SOURCE_DIR}/tests/libcxx/support")
+        target_compile_features("${libcxx_test_target}" PRIVATE cxx_std_23)
+        add_test(NAME "${libcxx_test_target}" COMMAND "${libcxx_test_target}")
+    endforeach()
+endif()
