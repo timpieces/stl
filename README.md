@@ -10,6 +10,14 @@ AI Disclaimer:
 - Some/much of the tests
 - *None* of the STL implementation
 
+# Development
+
+Generally when adding a new container/algo I'll:
+- Ask codex to copy the llvm tests and get them compiling against the system header
+- Ask codex to add a small shim to pick up the new file
+- Take the API from cppreference
+- Disable copilot and start coding
+
 ## TODO
 
 - Extend the libc++ test harness to cover compile-only (`*.compile.pass.cpp`), verification, and `assert.*` tests once we have the necessary death-test and diagnostic infrastructure in place.
