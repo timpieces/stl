@@ -8,6 +8,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 option(STL_SKIP_CONDA_CHECK "Skip enforcement of the active Conda environment" OFF)
 set(STL_EXPECTED_CONDA_ENV "stl" CACHE STRING "Conda environment required to build this project")
+option(STL_IGNORE_ARRAY "Defer to the system <array> header instead of the local shim" OFF)
 
 if(NOT STL_SKIP_CONDA_CHECK)
     if(NOT DEFINED ENV{CONDA_DEFAULT_ENV})
@@ -17,6 +18,10 @@ if(NOT STL_SKIP_CONDA_CHECK)
                 "Detected Conda environment '$ENV{CONDA_DEFAULT_ENV}', expected '${STL_EXPECTED_CONDA_ENV}'. "
                 "Activate the correct env or set STL_SKIP_CONDA_CHECK=ON if you know what you're doing.")
     endif()
+endif()
+
+if(STL_IGNORE_ARRAY)
+    add_compile_definitions(STL_IGNORE_ARRAY)
 endif()
 
 include(CTest)

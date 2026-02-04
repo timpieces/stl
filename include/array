@@ -1,0 +1,7 @@
+#pragma once
+
+#ifdef STL_IGNORE_ARRAY
+#  include_next <array>
+#else
+#  include "stl/array/array.h"
+#endif
